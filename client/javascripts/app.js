@@ -5,11 +5,14 @@ var main = function (triviaObjects) {
 		return trivia.question;
 	});
 
-	$.get("/questions", function(data) {
-		if(data) {
-			$
-		}
+	$("#answerQuestion").on("click", function(event) {
+		window.location.href = "trivia.html";
 	});
+
+	$("#createQuestion").on("click", function(event) {
+		window.location.href = "question.html";
+	});
+
 };
 
 $(document).ready(main);
