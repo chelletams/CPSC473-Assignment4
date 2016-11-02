@@ -2,7 +2,6 @@
 <html>
   <head>
     <title>Online Trivia Game - Test Your Knowledge</title>
-    <link href="stylesheets/style.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
   </head>
 
@@ -26,11 +25,17 @@
         <label>Answer: </label>
         <div id="getAnswer"></div>
       </div>
-    </div>
-    <button class="ui button" id="getQuestionButton">
-      Get Question
-    </button>
-    <p></p>
+      <button class="ui button" id="getQuestionButton">
+        Get Question
+      </button>
+      <div class="field">
+        <div id="correctScore"></div>
+        <div id="wrongScore"></div>
+      </div>
+      <button class="ui button" id="getTotalScore">
+        Get Score
+      </button>
+      </div>
     </div>
 
     <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
