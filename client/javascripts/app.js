@@ -64,7 +64,7 @@ var main = function (triviaObjects) {
 	var makeUpQuestion = function() {
 		var qstn = $("#makeQuestion").val(),
 			ans = $("#createAnswer").val(),
-			jsonData = JSON.stringify({qstn:qstn, ans:ans});
+			jsonData = JSON.stringify({question:qstn, answer:ans});
 
 		$.ajax({
 			type: "POST",
@@ -84,8 +84,25 @@ var main = function (triviaObjects) {
 
 	$("#submitQuestions").on("keypress", function(event) {
 		if(event.keyCode === 13) {
-			makeUpQuestions();
+			makeUpQuestion();
 		}
+	});
+
+	var getScore = function() {
+		$.ajax({
+			type: "GET",
+			url: "/score",
+			dataType: "json",
+			success: function(response) {
+				console.log(response);
+				$("#correcScore").append("Right: " + response.right);
+				$("#wrongScore").append("Wrong: " + response.wrong);
+			}
+		});
+	};
+
+	$("#getTotalScore").on("click", function() {
+		getScore();
 	});
 };
 
