@@ -13,12 +13,23 @@
     </h2>
     <div class="ui form">
       <div class="field">
-        <input type="text" placeholder="Enter your Answer">
+        <label>Question: </label>
+        <div id="question"></div>
       </div>
-      <button class="ui teal button">
+      <div class="field">
+        <input type="text" id="answer" placeholder="Enter your Answer">
+      </div>
+      <button class="ui teal button" id="getAnswerButton">
         Submit
       </button>
+      <div class="field">
+        <label>Answer: </label>
+        <div id="getAnswer"></div>
+      </div>
     </div>
+    <button class="ui button" id="getQuestionButton">
+      Get Question
+    </button>
     <p></p>
     </div>
 
