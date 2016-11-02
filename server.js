@@ -29,14 +29,14 @@ http.createServer(app).listen(3000);
 console.log("Server listening on port 3000");
 
 app.get("/questions", function(req, res) {
-	Trivia.find({}, function(err, trivias) {
+	Trivia.findOne({}, function(err, trivias) {
 		console.log(trivias.question);
 		res.json(trivias);
 	});
 });
 
 app.post("/questions", function (req, res) {
-	console.log(req.body);
+	console.log("INSIDE POST /questions", req.body);
 	var newQuestions = new Trivia({"question":req.body.question,
 								   "answerId":req.body.answerId,
 								   "answer":req.body.answer});
@@ -62,17 +62,13 @@ app.post("/answer", function (req, res) {
 		answerId,
 		answer;
 
-	req.on("data", function(data) {
-		jsonObject = JSON.parse(data);
-		answerId = parseInt(jsonObject.answerId, 10);
-		answer = jsonObject.answer;
-
-	Trivia.findOne({"answerId":answerId}, function (err, result) {
+	Trivia.findOne({"answerId":req.body.answerId}, function (err, result) {
+		console.log(result.answer);
 		if(err !== null) {
 			console.log("ERROR");
 		}
 		else {
-			if(answer === result.answer) {
+			if(req.body.answer === result.answer) {
 				var correct = true;
 				redisClient.incr("right", function(err, value) {
 					if(err) {
@@ -96,7 +92,6 @@ app.post("/answer", function (req, res) {
 			}
 			return res.json({correct: correct});
 		}
-		});
 	});
 });
 
